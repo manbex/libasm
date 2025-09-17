@@ -1,0 +1,7 @@
+section	.note.GNU-stack
+section	.text
+global	ft_write
+
+ft_strlen:
+	ret
+
