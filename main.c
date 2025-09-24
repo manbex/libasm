@@ -8,6 +8,7 @@ size_t	ft_strlen(const char *s);
 char	*ft_strcpy(char *restrict dst, const char *restrict src);
 int		ft_strcmp(const char *s1, const char *s2);
 ssize_t	ft_write(int fd, const void *buf, size_t count);
+char	*ft_strdup(const char *s);
 
 int	main(int argc, char **argv)
 {
@@ -32,6 +33,7 @@ int	main(int argc, char **argv)
 		char	*dst = malloc(5 * sizeof(char));
 		printf("ft_strcpy: %s\n", ft_strcpy(dst, "test"));
 		printf("dst: %s\n", dst);
+		free(dst);
 	}
 
 	//strcmp
@@ -92,6 +94,19 @@ int	main(int argc, char **argv)
 		printf("\n");
 		printf("    return: %d\n", ret);
 		printf("    errno: %d\n", errno);
+	}
+	//strdup
+	if (argc == 1 || !strcmp(argv[1],"ft_strdup") || !strcmp(argv[1],"strdup"))
+	{
+		if (argc == 1) {
+			printf("\n\n");
+		}
+		printf("=== ft_strdup ===\n\n");
+
+		char	*s1 = ft_strdup("This is a test");
+		(void)s1;
+		printf("string: %s\n", s1);
+		free(s1);
 	}
 
 	return (0);

@@ -3,15 +3,18 @@ section	.text
 global	ft_strcpy
 
 ft_strcpy:
-	push	rdi
+	xor		rcx,rcx
 
 	loop:
-	mov		rcx,[rsi]
-	mov		[rdi],rcx
-	inc		rsi
-	inc		rdi
-	cmp		byte[rsi],0
-	jne		loop
+	movzx	rdx,byte[rsi+rcx]
+	mov		[rdi+rcx],dl
 
-	pop		rax
+	cmp		byte[rsi+rcx],0
+	je		end
+
+	inc		rcx
+	jmp		loop
+
+	end:
+	mov		rax,rdi
 	ret
