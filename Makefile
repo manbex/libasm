@@ -13,7 +13,9 @@ SRC_DIR		=	srcs/
 OBJ_DIR		=	obj/
 
 LIB_SRC 		=	ft_strlen.s	\
-					ft_write.s
+					ft_write.s	\
+					ft_strcpy.s	\
+					ft_strcmp.s
 LIB_OBJ			=	$(addprefix $(OBJ_DIR), $(LIB_SRC:.s=.o))
 
 SRC				=	main.c

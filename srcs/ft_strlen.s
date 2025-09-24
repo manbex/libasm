@@ -6,7 +6,7 @@ ft_strlen:
 	mov		rcx,0
 
 	loop:
-	cmp		BYTE[rdi],0
+	cmp		byte[rdi],0
 	je		end
 
 	inc		rcx
