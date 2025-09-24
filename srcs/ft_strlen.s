@@ -3,16 +3,15 @@ section	.text
 global	ft_strlen
 
 ft_strlen:
-	mov		rcx,0
+	xor		rax,rax
 
 	loop:
 	cmp		byte[rdi],0
 	je		end
 
-	inc		rcx
+	inc		rax
 	inc		rdi
 	jmp		loop
 
 	end:
-	mov		rax,rcx
 	ret

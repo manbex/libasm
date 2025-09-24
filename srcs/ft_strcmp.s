@@ -3,7 +3,7 @@ section	.text
 global	ft_strcmp
 
 ft_strcmp:
-	mov		rcx,0
+	xor		rcx,rcx
 
 	loop:
 	movzx	rax,byte[rdi+rcx]
@@ -12,8 +12,6 @@ ft_strcmp:
 	jnz		end
 	
 	cmp		byte[rdi+rcx],0
-	je		end
-	cmp		byte[rsi+rcx],0
 	je		end
 
 	inc		rcx
