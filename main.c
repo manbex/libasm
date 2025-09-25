@@ -7,6 +7,7 @@
 
 #define COLOR "\e[0;93m"
 #define COLOR2 "\e[0;96m"
+#define COLOR3 "\e[0;95m"
 #define RESET "\e[0m"
 
 size_t	ft_strlen(const char *s);
@@ -68,7 +69,7 @@ int	main(int argc, char **argv)
 		int		len1 = ft_strlen(s1);
 		int		fd = 1;
 
-		printf("test with string \"This is a string\" (16 characters): \n\n");
+		printf("test with string %s\"This is a string\"%s (16 characters): \n\n", COLOR3, RESET);
 
 		printf("%sft_write:%s\n    output: ", COLOR2, RESET);
 		fflush(stdout);
@@ -116,7 +117,7 @@ int	main(int argc, char **argv)
 		int		ret;
 		errno = 0;
 
-		printf("test with file \"file.txt\" containing \"This is a test\\n\" (15 characters): \n\n");
+		printf("read file containing %s\"This is a test\\n\"%s (15 characters) in buffer of size 1024: \n\n", COLOR3, RESET);
 
 		bzero(buf, 1024);
 		ret = ft_read(fd, buf, 1024);
@@ -150,7 +151,7 @@ int	main(int argc, char **argv)
 		printf("    buffer: %s\n", buf);
 		printf("    errno : %d\n\n", errno);
 
-		printf("\ntest partial read:\n\n");
+		printf("\ntest partial read of size 7:\n\n");
 
 		errno = 0;
 		bzero(buf, 1024);
