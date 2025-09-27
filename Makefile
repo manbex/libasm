@@ -22,7 +22,8 @@ LIB_SRC			=	ft_strlen.s	\
 					ft_write.s	\
 					ft_read.s	\
 					ft_strdup.s
-BONUS_SRC		=
+BONUS_SRC		=	ft_list_push_front.s	\
+					ft_list_size.s
 
 
 LIB_OBJ			=	$(addprefix $(OBJ_DIR), $(LIB_SRC:.s=.o))
