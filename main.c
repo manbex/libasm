@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		printf("\"\"           : %ld\n", ft_strlen(""));
 	}
 
-	//strcpy
+	//ft_strcpy
 	if (argc == 1 || !strcmp(argv[1],"ft_strcpy") || !strcmp(argv[1],"strcpy"))
 	{
 		if (argc == 1) {
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 		free(dst);
 	}
 
-	//strcmp
+	//ft_strcmp
 	if (argc == 1 || !strcmp(argv[1],"ft_strcmp") || !strcmp(argv[1],"strcmp"))
 	{
 		if (argc == 1) {
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 		printf("strcmp   : %i\n", strcmp(s1,s2));
 	}
 
-	//write
+	//ft_write
 	if (argc == 1 || !strcmp(argv[1],"ft_write") || !strcmp(argv[1],"write"))
 	{
 		if (argc == 1) {
@@ -103,7 +103,7 @@ int	main(int argc, char **argv)
 		printf("    errno: %d\n", errno);
 	}
 
-	//read
+	//ft_read
 	if (argc == 1 || !strcmp(argv[1],"ft_read") || !strcmp(argv[1],"read"))
 	{
 		if (argc == 1) {
@@ -171,7 +171,7 @@ int	main(int argc, char **argv)
 		close(fd);
 	}
 
-	//strdup
+	//ft_strdup
 	if (argc == 1 || !strcmp(argv[1],"ft_strdup") || !strcmp(argv[1],"strdup"))
 	{
 		if (argc == 1) {

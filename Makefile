@@ -1,29 +1,44 @@
-NAME		=	test
-LIBNAME		=	libasm
+NAME			=	test
+LIBNAME			=	libasm
 
-ASM			=	nasm
-ASFLAGS		=	-f elf64
+NAME_BONUS		=	test_bonus
+LIB_BONUS		=	libasm_bonus
 
-CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
+ASM				=	nasm
+ASFLAGS			=	-f elf64
 
-RM			=	rm -f
+CC				=	gcc
+CFLAGS			=	-Wall -Wextra -Werror
 
-SRC_DIR		=	srcs/
-OBJ_DIR		=	obj/
+RM				=	rm -f
 
-LIB_SRC 		=	ft_strlen.s	\
+SRC_DIR			=	srcs/
+BONUS_DIR		=	bonus/
+OBJ_DIR			=	obj/
+
+LIB_SRC			=	ft_strlen.s	\
 					ft_strcpy.s	\
 					ft_strcmp.s	\
 					ft_write.s	\
 					ft_read.s	\
 					ft_strdup.s
+BONUS_SRC		=
+
+
 LIB_OBJ			=	$(addprefix $(OBJ_DIR), $(LIB_SRC:.s=.o))
+LIB_OBJ_BONUS	=	$(addprefix $(OBJ_DIR), $(BONUS_SRC:.s=.o))
 
 SRC				=	main.c
+SRC_BONUS		=	main_bonus.c
+
 OBJ				=	$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+OBJ_BONUS		=	$(addprefix $(OBJ_DIR), $(SRC_BONUS:.c=.o))
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.s
+					@mkdir -p $(@D)
+					$(ASM) $(ASFLAGS) $< -o $@
+
+$(OBJ_DIR)%.o:	$(BONUS_DIR)%.s
 					@mkdir -p $(@D)
 					$(ASM) $(ASFLAGS) $< -o $@
 
@@ -33,18 +48,25 @@ $(OBJ_DIR)%.o:	%.c
 
 all:			$(NAME)
 
+bonus:			$(NAME_BONUS)
+
 $(LIBNAME):		$(LIB_OBJ)
 					ar rcs $@.a $(LIB_OBJ)
+
+$(LIB_BONUS):	$(LIB_OBJ_BONUS)
+					ar rcs $@.a $(LIB_OBJ_BONUS)
 
 $(NAME):		$(LIBNAME) $(OBJ)
 					$(CC) $(CFLAGS) $(OBJ) -o $@ -L./ -lasm
 
+$(NAME_BONUS):	$(LIB_BONUS) $(OBJ_BONUS)
+					$(CC) $(CFLAGS) $(OBJ_BONUS) -o $@ -L./ -lasm_bonus
 
 clean:
 					$(RM) -r $(OBJ_DIR)
 
 fclean:			clean
-					$(RM) $(NAME) $(LIBNAME).a
+					$(RM) $(NAME) $(LIBNAME).a $(NAME_BONUS) $(LIB_BONUS).a
 
 re:				fclean all
 
