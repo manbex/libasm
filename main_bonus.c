@@ -15,6 +15,7 @@ typedef struct s_list
 
 void	ft_list_push_front(t_list **begin_list, void *data);
 int		ft_list_size(t_list *begin_list);
+void	ft_list_sort(t_list **begin_list, int (*cmp)());
 
 
 void	ft_print_list(t_list *lst)
@@ -61,15 +62,15 @@ int	main(int argc, char **argv)
 		char	*s3 = "Third";
 		ft_print_list(lst);
 		printf("\nPush front with \"First\" as data\n\n");
-		ft_list_push_front(&lst, (void *)s1);
+		ft_list_push_front(&lst, s1);
 		ft_print_list(lst);
 
 		printf("\nPush front with \"Second\" as data\n\n");
-		ft_list_push_front(&lst, (void *)s2);
+		ft_list_push_front(&lst, s2);
 		ft_print_list(lst);
 
 		printf("\nPush front with \"Third\" as data\n\n");
-		ft_list_push_front(&lst, (void *)s3);
+		ft_list_push_front(&lst, s3);
 		ft_print_list(lst);
 
 		ft_free_list(lst);
@@ -89,25 +90,25 @@ int	main(int argc, char **argv)
 		printf("\n%sft_list_size:%s %d\n\n\n", COLOR2, RESET, ft_list_size(lst));
 		ft_free_list(lst);
 	
-		ft_list_push_front(&lst, (void *)"3");
-		ft_list_push_front(&lst, (void *)"2");
-		ft_list_push_front(&lst, (void *)"1");
-		ft_list_push_front(&lst, (void *)"0");
+		ft_list_push_front(&lst, "3");
+		ft_list_push_front(&lst, "2");
+		ft_list_push_front(&lst, "1");
+		ft_list_push_front(&lst, "0");
 		ft_print_list(lst);
 		printf("\n%sft_list_size:%s %d\n\n\n", COLOR2, RESET, ft_list_size(lst));
 		ft_free_list(lst);
 		lst = NULL;
 
-		ft_list_push_front(&lst, (void *)"9");
-		ft_list_push_front(&lst, (void *)"8");
-		ft_list_push_front(&lst, (void *)"7");
-		ft_list_push_front(&lst, (void *)"6");
-		ft_list_push_front(&lst, (void *)"5");
-		ft_list_push_front(&lst, (void *)"4");
-		ft_list_push_front(&lst, (void *)"3");
-		ft_list_push_front(&lst, (void *)"2");
-		ft_list_push_front(&lst, (void *)"1");
-		ft_list_push_front(&lst, (void *)"0");
+		ft_list_push_front(&lst, "9");
+		ft_list_push_front(&lst, "8");
+		ft_list_push_front(&lst, "7");
+		ft_list_push_front(&lst, "6");
+		ft_list_push_front(&lst, "5");
+		ft_list_push_front(&lst, "4");
+		ft_list_push_front(&lst, "3");
+		ft_list_push_front(&lst, "2");
+		ft_list_push_front(&lst, "1");
+		ft_list_push_front(&lst, "0");
 		ft_print_list(lst);
 		printf("\n%sft_list_size:%s %d\n", COLOR2, RESET, ft_list_size(lst));
 		ft_free_list(lst);
@@ -121,6 +122,24 @@ int	main(int argc, char **argv)
 			printf("\n\n");
 		}
 		printf("%s=== ft_list_sort ===%s\n\n", COLOR, RESET);
+
+		t_list	*lst = NULL;
+		ft_list_push_front(&lst, "9");
+		ft_list_push_front(&lst, "6");
+		ft_list_push_front(&lst, "1");
+		ft_list_push_front(&lst, "4");
+		ft_list_push_front(&lst, "7");
+		ft_list_push_front(&lst, "3");
+		ft_list_push_front(&lst, "0");
+		ft_list_push_front(&lst, "8");
+		ft_list_push_front(&lst, "2");
+		ft_list_push_front(&lst, "5");
+		ft_print_list(lst);
+		printf("\n%sft_list_sort%s\n\n", COLOR2, RESET);
+		ft_list_sort(&lst, &strcmp);
+		ft_print_list(lst);
+		ft_free_list(lst);
+		lst = NULL;
 	}
 	printf("\n");
 	return (0);
