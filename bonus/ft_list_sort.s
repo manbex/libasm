@@ -24,8 +24,8 @@ ft_list_sort:
 	push	rdx
 	call	r8
 	pop		rdx
-	cmp		rax,0
-	jg		swap
+	test	eax,eax
+	jns		swap
 	mov		rdx,[rdx+8]
 	jmp		main_loop
 
@@ -37,20 +37,6 @@ ft_list_sort:
 	mov		[rax],rcx
 	pop		rdx
 	push	rdx
-
-	mov		rdi,[rdx]
-	mov		rsi,[rdx+8]
-	mov		rsi,[rsi]
-	push	rdx
-	call	r8
-	pop		rdx
-	cmp		rax,0
-	jg		test
-	jmp		return
-	test:
-	mov		rax,128
-	jmp		return
-
 	jmp		main_loop
 
 	return:

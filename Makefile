@@ -8,7 +8,7 @@ ASM				=	nasm
 ASFLAGS			=	-f elf64
 
 CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -m64
 
 RM				=	rm -f
 
