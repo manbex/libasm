@@ -15,7 +15,7 @@ typedef struct s_list
 
 void	ft_list_push_front(t_list **begin_list, void *data);
 int		ft_list_size(t_list *begin_list);
-void	ft_list_sort(t_list **begin_list, int (*cmp)());
+int		ft_list_sort(t_list **begin_list, int (*cmp)());
 
 
 void	ft_print_list(t_list *lst)
@@ -135,8 +135,9 @@ int	main(int argc, char **argv)
 		ft_list_push_front(&lst, "2");
 		ft_list_push_front(&lst, "5");
 		ft_print_list(lst);
-		printf("\n%sft_list_sort%s\n\n", COLOR2, RESET);
-		ft_list_sort(&lst, &strcmp);
+		//printf("\n%sft_list_sort:%s\n\n", COLOR2, RESET);
+		int	test = ft_list_sort(&lst, &strcmp);
+		printf("\n%sft_list_sort:%s %d\n\n", COLOR2, RESET, test);
 		ft_print_list(lst);
 		ft_free_list(lst);
 		lst = NULL;
