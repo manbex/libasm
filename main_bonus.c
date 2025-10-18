@@ -16,6 +16,7 @@ typedef struct s_list
 void	ft_list_push_front(t_list **begin_list, void *data);
 int		ft_list_size(t_list *begin_list);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
+void	ft_list_remove_if(t_list **begin_list, data *data_ref, int (*cmp)(), void (*free_fct)(void ));
 
 
 void	ft_print_list(t_list *lst)
@@ -140,6 +141,26 @@ int	main(int argc, char **argv)
 		ft_print_list(lst);
 		ft_free_list(lst);
 		lst = NULL;
+	}
+
+	//ft_list_remove_if
+	if (argc == 1 || !strcmp(argv[1],"ft_list_remove_if") || !strcmp(argv[1],"list_remove_if"))
+	{
+		if (argc == 1) {
+			printf("\n\n");
+		}
+		printf("%s=== ft_list_remove_if ===%s\n\n", COLOR, RESET);
+
+		t_list	*lst = NULL;
+		ft_list_push_front(&lst, "truth");
+		ft_list_push_front(&lst, "false");
+		ft_list_push_front(&lst, "truth");
+		ft_print_list(lst);
+		printf("\n%sft_list_remove_if strcmp \"truth\":%s\n\n", COLOR2, RESET);
+		ft_list_remove_if(&lst, "truth", strcmp, free);
+j
+		ft_print_list(lst);
+		ft_free_list(lst);
 	}
 	printf("\n");
 	return (0);
