@@ -16,7 +16,7 @@ typedef struct s_list
 void	ft_list_push_front(t_list **begin_list, void *data);
 int		ft_list_size(t_list *begin_list);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
-void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
+int		ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 
 
 void	ft_print_list(t_list *lst)
@@ -29,13 +29,16 @@ void	ft_print_list(t_list *lst)
 	}
 }
 
-void	ft_free_list(t_list *lst)
+void	ft_free_list(t_list *lst, void (*f)(void *))
 {
 	t_list	*tmp = NULL;
 	while (lst)
 	{
 		tmp = lst;
 		lst = lst->next;
+		if (f){
+			f(tmp->data);
+		}
 		free(tmp);
 	}
 }
@@ -74,7 +77,7 @@ int	main(int argc, char **argv)
 		ft_list_push_front(&lst, s3);
 		ft_print_list(lst);
 
-		ft_free_list(lst);
+		ft_free_list(lst, NULL);
 	}
 
 	//ft_list_size
@@ -89,7 +92,7 @@ int	main(int argc, char **argv)
 
 		ft_print_list(lst);
 		printf("\n%sft_list_size:%s %d\n\n\n", COLOR2, RESET, ft_list_size(lst));
-		ft_free_list(lst);
+		ft_free_list(lst, NULL);
 	
 		ft_list_push_front(&lst, "3");
 		ft_list_push_front(&lst, "2");
@@ -97,7 +100,7 @@ int	main(int argc, char **argv)
 		ft_list_push_front(&lst, "0");
 		ft_print_list(lst);
 		printf("\n%sft_list_size:%s %d\n\n\n", COLOR2, RESET, ft_list_size(lst));
-		ft_free_list(lst);
+		ft_free_list(lst, NULL);
 		lst = NULL;
 
 		ft_list_push_front(&lst, "9");
@@ -112,7 +115,7 @@ int	main(int argc, char **argv)
 		ft_list_push_front(&lst, "0");
 		ft_print_list(lst);
 		printf("\n%sft_list_size:%s %d\n", COLOR2, RESET, ft_list_size(lst));
-		ft_free_list(lst);
+		ft_free_list(lst, NULL);
 		lst = NULL;
 	}
 
@@ -139,7 +142,7 @@ int	main(int argc, char **argv)
 		printf("\n%sft_list_sort:%s\n\n", COLOR2, RESET);
 		ft_list_sort(&lst, &strcmp);
 		ft_print_list(lst);
-		ft_free_list(lst);
+		ft_free_list(lst, NULL);
 		lst = NULL;
 	}
 
@@ -152,15 +155,21 @@ int	main(int argc, char **argv)
 		printf("%s=== ft_list_remove_if ===%s\n\n", COLOR, RESET);
 
 		t_list	*lst = NULL;
-		ft_list_push_front(&lst, "truth");
-		ft_list_push_front(&lst, "false");
-		ft_list_push_front(&lst, "truth");
+		ft_list_push_front(&lst, strdup("truth"));
+		ft_list_push_front(&lst, strdup("false"));
+		ft_list_push_front(&lst, strdup("truth"));
+		ft_list_push_front(&lst, strdup("truth"));
+		ft_list_push_front(&lst, strdup("truth"));
+		ft_list_push_front(&lst, strdup("false"));
+		ft_list_push_front(&lst, strdup("truth"));
+		ft_list_push_front(&lst, strdup("false"));
+		ft_list_push_front(&lst, strdup("truth"));
 		ft_print_list(lst);
 		printf("\n%sft_list_remove_if strcmp \"truth\":%s\n\n", COLOR2, RESET);
 		ft_list_remove_if(&lst, "truth", strcmp, free);
 
 		ft_print_list(lst);
-		ft_free_list(lst);
+		ft_free_list(lst, free);
 	}
 	printf("\n");
 	return (0);
