@@ -13,6 +13,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int		ft_atoi_base(char *str, char *base);
 void	ft_list_push_front(t_list **begin_list, void *data);
 int		ft_list_size(t_list *begin_list);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
@@ -49,6 +50,13 @@ int	main(int argc, char **argv)
 	if (argc == 1 || !strcmp(argv[1],"ft_atoi_base") || !strcmp(argv[1],"atoi_base"))
 	{
 		printf("%s=== ft_atoi_base ===%s\n\n", COLOR, RESET);
+
+		char	*str = "-42sdf123123123";
+		char	*base = "0123456789";
+
+		printf("Test on %s\"%s\"%s with %s\"%s\"%s:\n", COLOR3, str, RESET, COLOR3, base, RESET);
+		printf("%sft_atoi_base:%s %d\n", COLOR2, RESET, ft_atoi_base(str, base));
+
 	}
 
 	//ft_list_push_front
@@ -65,15 +73,15 @@ int	main(int argc, char **argv)
 		char	*s2 = "Second";
 		char	*s3 = "Third";
 		ft_print_list(lst);
-		printf("\nPush front with \"First\" as data\n\n");
+		printf("\nPush front with %s\"First\"%s as data\n\n", COLOR3, RESET);
 		ft_list_push_front(&lst, s1);
 		ft_print_list(lst);
 
-		printf("\nPush front with \"Second\" as data\n\n");
+		printf("\nPush front with %s\"Second\"%s as data\n\n", COLOR3, RESET);
 		ft_list_push_front(&lst, s2);
 		ft_print_list(lst);
 
-		printf("\nPush front with \"Third\" as data\n\n");
+		printf("\nPush front with %s\"Third\"%s as data\n\n", COLOR3, RESET);
 		ft_list_push_front(&lst, s3);
 		ft_print_list(lst);
 

@@ -14,6 +14,7 @@ ft_list_sort:
 	mov		r8,rsi
 	push	rdx
 
+
 	main_loop:
 	cmp		qword[rdx+8],0
 	je		return
@@ -21,23 +22,29 @@ ft_list_sort:
 	mov		rdi,[rdx]
 	mov		rsi,[rdx+8]
 	mov		rsi,[rsi]
+
 	push	rdx
+	push	r8
 	call	r8
+	pop		r8
 	pop		rdx
+
 	test	eax,eax
 	jns		swap
 	mov		rdx,[rdx+8]
 	jmp		main_loop
 
+
 	swap:
 	mov		rcx,[rdx]
 	mov		rax,[rdx+8]
-	mov		r9,[rax]
-	mov		[rdx],r9
+	mov		rdi,[rax]
+	mov		[rdx],rdi
 	mov		[rax],rcx
 	pop		rdx
 	push	rdx
 	jmp		main_loop
+
 
 	return:
 	pop		rdx
