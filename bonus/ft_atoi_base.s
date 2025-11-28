@@ -112,7 +112,7 @@ ft_check_sign:
 	cmp		byte[rdi],'-'
 	jne		end_check_sign
 
-	imul	rax,-1
+	neg		rax
 
 	continue_loop_check_sign:
 	inc		rdi

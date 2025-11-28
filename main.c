@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 		printf("%s=== ft_strcpy ===%s\n\n", COLOR, RESET);
 
 		char	*dst = malloc(5 * sizeof(char));
+
 		printf("ft_strcpy: %s\n", ft_strcpy(dst, "test"));
 		printf("dst: %s\n", dst);
 		free(dst);
@@ -166,7 +167,7 @@ int	main(int argc, char **argv)
 		printf("%sread:%s\n", COLOR2, RESET);
 		printf("    return: %d\n", ret);
 		printf("    buffer: %s\n", buf);
-		printf("    errno : %d\n\n", errno);
+		printf("    errno : %d\n", errno);
 
 		close(fd);
 	}
