@@ -51,12 +51,30 @@ int	main(int argc, char **argv)
 	{
 		printf("%s=== ft_atoi_base ===%s\n\n", COLOR, RESET);
 
-		char	*str = "-42sdf123123123";
-		char	*base = "0123456789";
+		char	*str1 = "-42sdf123123123";
+		char	*base1 = "0123456789";
+		char	*str2 = "    	00101010";
+		char	*base2 = "01";
+		char	*str3 = "    ++++-----+2Ajsldj";
+		char	*base3 = "0123456789ABCDEF";
+		char	*base4 = "1";
+		char	*base5 = "000123";
+		char	*base6 = "+0123";
 
-		printf("Test on %s\"%s\"%s with %s\"%s\"%s:\n", COLOR3, str, RESET, COLOR3, base, RESET);
-		printf("%sft_atoi_base:%s %d\n", COLOR2, RESET, ft_atoi_base(str, base));
-
+		printf("Test on %s\"%s\"%s with %s\"%s\"%s:\n", COLOR3, str1, RESET, COLOR3, base1, RESET);
+		printf("%sft_atoi_base:%s %d\n\n", COLOR2, RESET, ft_atoi_base(str1, base1));
+		printf("Test on %s\"%s\"%s with %s\"%s\"%s:\n", COLOR3, str2, RESET, COLOR3, base2, RESET);
+		printf("%sft_atoi_base:%s %d\n\n", COLOR2, RESET, ft_atoi_base(str2, base2));
+		printf("Test on %s\"%s\"%s with %s\"%s\"%s:\n", COLOR3, str3, RESET, COLOR3, base3, RESET);
+		printf("%sft_atoi_base:%s %d\n\n", COLOR2, RESET, ft_atoi_base(str3, base3));
+		printf("Test with incorrect base %s\"%s\"%s:\n", COLOR3, base4, RESET);
+		printf("%sft_atoi_base:%s %d\n\n", COLOR2, RESET, ft_atoi_base("42", base4));
+		printf("Test with incorrect base %s\"%s\"%s:\n", COLOR3, base5, RESET);
+		printf("%sft_atoi_base:%s %d\n\n", COLOR2, RESET, ft_atoi_base("42", base5));
+		printf("Test with incorrect base %s\"%s\"%s:\n", COLOR3, base6, RESET);
+		printf("%sft_atoi_base:%s %d\n\n", COLOR2, RESET, ft_atoi_base("42", base6));
+		printf("Test with %sNULL%s parameters:\n", COLOR2, RESET);
+		printf("%sft_atoi_base:%s %d\n", COLOR2, RESET, ft_atoi_base(NULL, NULL));
 	}
 
 	//ft_list_push_front
